@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <h2>Processing</h2>
+    <div class="processing-container">
+        <p>Processing your images...</p>
+        <div class="progress-bar"></div>
+        <!--<p>Estimated time: 2 minutes</p> -->
+        <div id="timer">Estimated time: <span id="countdown">10</span> seconds...</div>
+        <button class="cancel-button" onclick="cancel_process()">Cancel</button>
+    </div>
+</section>
+<script>
+    let timeLeft = 10; // 10 seconds timer
+    const countdownElement = document.getElementById('countdown');
+    
+    const timer = setInterval(() => {
+        timeLeft--;
+        countdownElement.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            window.location.href = "{{ url_for('results') }}";
+        }
+    }, 1000);
+    function cancel_process() {
+            window.location.href = "{{ url_for('upload') }}";
+        }
+</script>
+{% endblock %}

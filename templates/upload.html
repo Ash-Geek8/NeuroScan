@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <h2>Upload MRI Scan</h2>
+    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+        <div class="upload-container">
+            <p>Drag and drop your MRI images here or <input type="file" name="file" accept=".dcm,.jpg,.png"></p>
+            <p>Supported formats: DICOM, JPEG, PNG</p>
+            <button type="submit" class="upload-button">Upload</button>
+        </div>
+    </form>
+</section>
+{% endblock %}
